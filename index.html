@@ -7,6 +7,8 @@
     <title>Flight Booking</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
     <!-- Stylesheet -->
@@ -32,7 +34,7 @@
             <h3>Booking Flights</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
-                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+                <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
             </div>
             <div class="input-group">
                 <label for="">Flying To</label>
@@ -51,10 +53,11 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input class="inp-style inp-width" type="number" name="" value="0" id="firstClass">
                 </div>
-                <div class="plus-minus-btn">
-                    <p>+ -</p>
+                <div class="">
+                    <button class="plus-minus-btn" id="increase"><i class="fas fa-plus"></i></button>
+                    <button class="plus-minus-btn" id="decrease"><i class="fas fa-minus"></i></button>
                 </div>
             </div>
             
@@ -63,8 +66,9 @@
                     <label for="">Economy ($100)</label>
                     <input class="inp-style inp-width" type="number" name="">
                 </div>
-                <div class="plus-minus-btn">
-                    <p> <span>+</span> <span>-</span> </p>
+                <div class=>
+                    <button class="plus-minus-btn"><i class="fas fa-plus"></i></button>
+                    <button class="plus-minus-btn"><i class="fas fa-minus"></i></button>
                 </div>
             </div>
             <div class="calculations">
@@ -102,9 +106,29 @@
             <h1>discover <br> around the world</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
         </div>
-    </section>
+    </main>
 
     <!--Thank You-->
+
+    <!-- javascript -->
+    <script>
+        //first class increase button
+        document.getElementById('increase').addEventListener("click",function(){
+            var inputNumber = document.getElementById("firstClass").value;
+            const currentNumber = parseInt(inputNumber);
+            var afterIncrease = currentNumber + 1;
+            document.getElementById('firstClass').value = afterIncrease;
+        });    
+        
+        //first class decrease button
+        document.getElementById('decrease').addEventListener("click",function(){
+            const inputNumber = document.getElementById('firstClass').value;
+            const currentNumber = parseInt(inputNumber);
+            const afterDecrease = currentNumber - 1;
+            document.getElementById('firstClass').value = afterDecrease;
+        }); 
+
+    </script>
 </body>
 
 </html>
