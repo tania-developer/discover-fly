@@ -157,6 +157,7 @@
                currentValue = intValue - 1;
            }
            document.getElementById(ticketClass).value = currentValue;
+           getTotal();
 
             //const ticketPrice = currentValue * 150;
         //    let ticketPrice = 0;
@@ -166,16 +167,13 @@
         //    if(ticketClass == "economyClass"){
         //        ticketPrice = currentValue * 100;
         //    }
-           getTotal();
+           
         }
 
         function getTotal(){
-            const firstNumber = document.getElementById("firstClass");
-            const firstValue = parseInt(firstNumber.value);
-
-            const economyNumber = document.getElementById("economyClass");
-            const economyValue = parseInt(economyNumber.value);
-
+            const firstValue = getInputValue('firstClass');
+            const economyValue = getInputValue("economyClass");
+            
             const subtotal = firstValue * 150 + economyValue * 100;
             document.getElementById("subtotal").innerText = subtotal;
 
@@ -184,22 +182,32 @@
 
             const total = subtotal + tax;
             document.getElementById("total").innerText = total;
-            //console.log(subtotal);
+           //console.log(subtotal);
         }  
 
-        document.getElementById("book-btn").addEventListener("click", function(){
-            const firstNumber = document.getElementById("firstClass");
-            const firstValue = parseInt(firstNumber.value);
+        
+        //function for input value 
+        function getInputValue(ticketClass) {
+            const inputValue = document.getElementById(ticketClass).value;
+            const intValue = parseInt(inputValue);
+            return intValue;
+            
+        }
 
+
+
+
+        // book button
+        document.getElementById("book-btn").addEventListener("click", function(){
+            const firstValue = getInputValue('firstClass');
             const firstTotal = firstValue * 150 ;
 
-            const economyNumber = document.getElementById("economyClass");
-            const economyValue = parseInt(economyNumber.value);
+            const economyValue = getInputValue("economyClass");
             const economyTotal = economyValue * 100 ;
 
             const total = document.getElementById("total").innerText;
             alert("First Class Ticket Cost is : " + firstTotal + "\nEconomy class Ticket Cost is : " + economyTotal + "\nYour Total Cost is : " + total);
-        })
+        });
     </script>
 </body>
 
