@@ -56,19 +56,19 @@
                     <input class="inp-style inp-width" type="number" name="" value="0" id="firstClass">
                 </div>
                 <div class="">
-                    <button class="plus-minus-btn" id="increase"><i class="fas fa-plus"></i></button>
-                    <button class="plus-minus-btn" id="decrease"><i class="fas fa-minus"></i></button>
+                    <button class="plus-minus-btn" onclick="getTicketPrice('firstClass',true);"><i class="fas fa-plus"></i></button>
+                    <button class="plus-minus-btn" onclick="getTicketPrice('firstClass',false);"><i class="fas fa-minus"></i></button>
                 </div>
             </div>
             
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input class="inp-style inp-width" type="number" name="" value="0" id="economyClass">
                 </div>
                 <div class=>
-                    <button class="plus-minus-btn"><i class="fas fa-plus"></i></button>
-                    <button class="plus-minus-btn"><i class="fas fa-minus"></i></button>
+                    <button  class="plus-minus-btn" onclick="getTicketPrice('economyClass', true);"><i class="fas fa-plus"></i></button>
+                    <button class="plus-minus-btn" onclick="getTicketPrice('economyClass', false);"><i class="fas fa-minus"></i></button>
                 </div>
             </div>
             <div class="calculations">
@@ -77,7 +77,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p>$00</p>
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p>$00</p>
                     </div>
                 </div>
             </div>
@@ -113,16 +113,17 @@
     <!-- javascript -->
     <script>
         //first class increase button
-        document.getElementById('increase').addEventListener("click",function(){
-            const firstClassTicketPrice = getTicketPrice(true);
-            console.log(firstClassTicketPrice);
-        });
+        // document.getElementById('first-increase').addEventListener("click",function(){
+        //     const firstClassTicketPrice = getTicketPrice("firstClass",true);
+        //     console.log(firstClassTicketPrice);
+        // });
 
 
-        document.getElementById('decrease').addEventListener("click",function(){
-            const firstClassTicketPrice = getTicketPrice(false);
-            console.log(firstClassTicketPrice);
-        });
+        // document.getElementById('first-decrease').addEventListener("click",function(){
+        //     const firstClassTicketPrice = getTicketPrice("firstClass", false);
+        //     console.log(firstClassTicketPrice);
+        // });
+
 
         //   var inputNumber = document.getElementById("firstClass").value;
         //     const currentNumber = parseInt(inputNumber);
@@ -130,7 +131,8 @@
         //     const ticketPrice = afterIncrease * 150 ;
         //     console.log(ticketPrice);
         //     document.getElementById('firstClass').value = afterIncrease;
-        // });    
+        // });  
+
         
         // //first class decrease button
         // document.getElementById('decrease').addEventListener("click",function(){
@@ -142,19 +144,27 @@
         //     document.getElementById('firstClass').value = afterDecrease;
         // }); 
 
-        //function
-        function getTicketPrice(isIncrease){
-            const inputValue = document.getElementById('firstClass').value;
-            const intNumber = parseInt(inputValue);
-            let currentNumber = intNumber;
+
+        //function for increment and decrement 
+        function getTicketPrice(ticketClass,isIncrease){
+            const inputValue = document.getElementById(ticketClass).value;
+            const intValue = parseInt(inputValue);
+            let currentValue = intValue;
             if(isIncrease == true){
-                currentNumber = intNumber + 1;
+                currentValue = intValue + 1;
             }
-           if(isIncrease == false && intNumber > 0){
-               currentNumber = intNumber - 1;
+           if(isIncrease == false && intValue > 0){
+               currentValue = intValue - 1;
            }
-           document.getElementById('firstClass').value = currentNumber;
-            const ticketPrice = currentNumber * 150;
+           document.getElementById(ticketClass).value = currentValue;
+            //const ticketPrice = currentValue * 150;
+           let ticketPrice = 0;
+           if(ticketClass == "firstClass"){
+               ticketPrice = currentValue * 150;
+           } 
+           if(ticketClass == "economyClass"){
+               ticketPrice = currentValue * 100;
+           }
             return(ticketPrice);
         }
 
