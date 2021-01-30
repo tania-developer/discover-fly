@@ -114,19 +114,49 @@
     <script>
         //first class increase button
         document.getElementById('increase').addEventListener("click",function(){
-            var inputNumber = document.getElementById("firstClass").value;
-            const currentNumber = parseInt(inputNumber);
-            var afterIncrease = currentNumber + 1;
-            document.getElementById('firstClass').value = afterIncrease;
-        });    
-        
-        //first class decrease button
+            const firstClassTicketPrice = getTicketPrice(true);
+            console.log(firstClassTicketPrice);
+        });
+
+
         document.getElementById('decrease').addEventListener("click",function(){
-            const inputNumber = document.getElementById('firstClass').value;
-            const currentNumber = parseInt(inputNumber);
-            const afterDecrease = currentNumber - 1;
-            document.getElementById('firstClass').value = afterDecrease;
-        }); 
+            const firstClassTicketPrice = getTicketPrice(false);
+            console.log(firstClassTicketPrice);
+        });
+
+        //   var inputNumber = document.getElementById("firstClass").value;
+        //     const currentNumber = parseInt(inputNumber);
+        //     var afterIncrease = currentNumber + 1;
+        //     const ticketPrice = afterIncrease * 150 ;
+        //     console.log(ticketPrice);
+        //     document.getElementById('firstClass').value = afterIncrease;
+        // });    
+        
+        // //first class decrease button
+        // document.getElementById('decrease').addEventListener("click",function(){
+        //     const inputNumber = document.getElementById('firstClass').value;
+        //     const currentNumber = parseInt(inputNumber);
+        //     const afterDecrease = currentNumber - 1;
+        //     const ticketPrice = afterDecrease * 150;
+        //     console.log(ticketPrice);
+        //     document.getElementById('firstClass').value = afterDecrease;
+        // }); 
+
+        //function
+        function getTicketPrice(isIncrease){
+            const inputValue = document.getElementById('firstClass').value;
+            const intNumber = parseInt(inputValue);
+            let currentNumber = intNumber;
+            if(isIncrease == true){
+                currentNumber = intNumber + 1;
+            }
+           if(isIncrease == false && intNumber > 0){
+               currentNumber = intNumber - 1;
+           }
+           document.getElementById('firstClass').value = currentNumber;
+            const ticketPrice = currentNumber * 150;
+            return(ticketPrice);
+        }
 
     </script>
 </body>
