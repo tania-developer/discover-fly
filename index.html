@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button class="btn-style" id="book-btn">Book Now</button>
         </div>
 
         <div class="booking-content">
@@ -157,18 +157,19 @@
                currentValue = intValue - 1;
            }
            document.getElementById(ticketClass).value = currentValue;
+
             //const ticketPrice = currentValue * 150;
-           let ticketPrice = 0;
-           if(ticketClass == "firstClass"){
-               ticketPrice = currentValue * 150;
-           } 
-           if(ticketClass == "economyClass"){
-               ticketPrice = currentValue * 100;
-           }
-           getSubTotal();
+        //    let ticketPrice = 0;
+        //    if(ticketClass == "firstClass"){
+        //        ticketPrice = currentValue * 150;
+        //    } 
+        //    if(ticketClass == "economyClass"){
+        //        ticketPrice = currentValue * 100;
+        //    }
+           getTotal();
         }
 
-        function getSubTotal(){
+        function getTotal(){
             const firstNumber = document.getElementById("firstClass");
             const firstValue = parseInt(firstNumber.value);
 
@@ -184,10 +185,21 @@
             const total = subtotal + tax;
             document.getElementById("total").innerText = total;
             //console.log(subtotal);
-        }
+        }  
 
-        
+        document.getElementById("book-btn").addEventListener("click", function(){
+            const firstNumber = document.getElementById("firstClass");
+            const firstValue = parseInt(firstNumber.value);
 
+            const firstTotal = firstValue * 150 ;
+
+            const economyNumber = document.getElementById("economyClass");
+            const economyValue = parseInt(economyNumber.value);
+            const economyTotal = economyValue * 100 ;
+
+            const total = document.getElementById("total").innerText;
+            alert("First Class Ticket Cost is : " + firstTotal + "\nEconomy class Ticket Cost is : " + economyTotal + "\nYour Total Cost is : " + total);
+        })
     </script>
 </body>
 
