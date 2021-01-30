@@ -77,7 +77,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$00</p>
+                        <p>$ <span id="subtotal">00</span></p>
                     </div>
                 </div>
 
@@ -86,7 +86,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p>$ <span id="tax">00</span></p>
                     </div>
                 </div>
                 <hr>
@@ -95,7 +95,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$00</p>
+                        <p>$ <span id="total">00</span></p>
                     </div>
                 </div>
             </div>
@@ -165,8 +165,28 @@
            if(ticketClass == "economyClass"){
                ticketPrice = currentValue * 100;
            }
-            return(ticketPrice);
+           getSubTotal();
         }
+
+        function getSubTotal(){
+            const firstNumber = document.getElementById("firstClass");
+            const firstValue = parseInt(firstNumber.value);
+
+            const economyNumber = document.getElementById("economyClass");
+            const economyValue = parseInt(economyNumber.value);
+
+            const subtotal = firstValue * 150 + economyValue * 100;
+            document.getElementById("subtotal").innerText = subtotal;
+
+            const tax = subtotal * 0.1;
+            document.getElementById("tax").innerText = tax;
+
+            const total = subtotal + tax;
+            document.getElementById("total").innerText = total;
+            //console.log(subtotal);
+        }
+
+        
 
     </script>
 </body>
